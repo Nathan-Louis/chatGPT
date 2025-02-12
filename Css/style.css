@@ -1,0 +1,37 @@
+::before,
+::after,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  align-items: center;
+  padding: 10px;
+}
+
+textarea {
+  border-radius: 25px;
+  margin: 10px;
+  padding: 20px 10px;
+}
+
+button {
+  border-radius: 25px;
+  padding: 5px 10px;
+  border: none;
+  box-shadow: 1px 1px 5px black;
+  cursor: pointer;
+  margin: 5px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+p {
+  margin: 10px;
+}
