@@ -11,9 +11,6 @@ function changeColor() {
     colorText = document.createElement("p");
     colorText.id = "colorText";
     document.body.appendChild(colorText);
-    colorText.style.color = "black";
-    colorText.style.fontWeight = "bold";
-    colorText.style.padding = "10px";
   }
 
   // Mettre à jour le texte avec la nouvelle couleur

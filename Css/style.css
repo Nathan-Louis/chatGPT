@@ -62,6 +62,13 @@ a:hover {
   text-decoration: underline;
 }
 
+#colorText {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
 @media (max-width: 600px) {
   section {
     width: 95%;
