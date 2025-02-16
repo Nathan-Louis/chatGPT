@@ -69,6 +69,12 @@ a:hover {
   font-weight: bold;
 }
 
+#quoteText {
+  font-weight: bold;
+  padding: 20px;
+  /* font-style: italic; */
+}
+
 @media (max-width: 600px) {
   section {
     width: 95%;
