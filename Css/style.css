@@ -116,6 +116,10 @@ button:hover + #quoteText {
   transform: scale(1.05);
 }
 
+#favoriteQuote {
+  padding: 10px;
+}
+
 @media (max-width: 600px) {
   section {
     width: 95%;
