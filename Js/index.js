@@ -93,3 +93,17 @@ document.addEventListener("DOMContentLoaded", displayFavoriteQuote);
 document
   .getElementById("saveQuoteButton")
   .addEventListener("click", saveFavoriteQuote);
+
+function deleteFavoriteQuote() {
+  const savedQuote = localStorage.getItem("favoriteQuote");
+  const savedAuthor = localStorage.getItem("favoriteAuthor");
+
+  if (savedQuote && savedAuthor) {
+    let deleteBtn = document.createElement("button#deleteQuote");
+    document.body.appendChild(deleteBtn);
+    deleteBtn.addEventListener("click", () => {
+      localStorage.removeItem(savedQuote);
+      localStorage.removeItem(savedAuthor);
+    });
+  }
+}
