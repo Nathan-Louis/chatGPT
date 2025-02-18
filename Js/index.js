@@ -41,8 +41,27 @@ function changeQuote() {
   document.getElementById("quoteText").style.color = randomColor;
 }
 
-let quoteBtn = document.getElementById("newQuoteBtn");
+let quoteBtn = document.getElementById("QuoteBtn");
 
-quoteBtn.addEventListener("click", () => {
-  changeQuote();
-});
+// quoteBtn.addEventListener("click", () => {
+//   changeQuote();
+// });
+
+async function fetchQuote() {
+  try {
+    const response = await fetch("https://api.quotable.io/random");
+    if (!response.ok) {
+      throw new Error("Problème avec l'API");
+    }
+    const data = await response.json();
+    document.getElementById("quoteText").innerText = `"${data.content}"`;
+    document.getElementById("quoteAuthor").innerText = `- ${data.author}`;
+  } catch (error) {
+    document.getElementById("quoteText").innerText =
+      "Impossible de charger une citation.";
+    document.getElementById("quoteAuthor").innerText = "";
+    console.error(error);
+  }
+}
+
+document.getElementById("quoteButton").addEventListener("click", fetchQuote);
