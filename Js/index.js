@@ -107,3 +107,5 @@ function deleteFavoriteQuote() {
     });
   }
 }
+
+document.addEventListener("DOMContentLoaded", deleteFavoriteQuote);
