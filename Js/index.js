@@ -83,6 +83,7 @@ function displayFavoriteQuote() {
     document.getElementById(
       "favoriteQuote"
     ).innerText = `Citation favorite : ${savedQuote} ${savedAuthor}`;
+    deleteFavoriteQuote();
   }
 }
 
@@ -99,20 +100,18 @@ function deleteFavoriteQuote() {
   const savedAuthor = localStorage.getItem("favoriteAuthor");
 
   if (savedQuote && savedAuthor) {
-    if (!document.getElementById("deleteQuote")) {
-      let deleteBtn = document.createElement("button");
-      deleteBtn.id = "deleteQuote";
-      deleteBtn.innerText = "Supprimer la citation favorite";
-      document.body.appendChild(deleteBtn);
+    let deleteBtn = document.createElement("button");
+    deleteBtn.id = "deleteQuote";
+    deleteBtn.innerText = "Supprimer la citation favorite";
+    document.body.appendChild(deleteBtn);
 
-      deleteBtn.addEventListener("click", () => {
-        localStorage.removeItem("favoriteQuote");
-        localStorage.removeItem("favoriteAuthor");
-        document.getElementById("favoriteQuote").innerText =
-          "Citation favorite : Aucune pour le moment";
-        deleteBtn.remove();
-      });
-    }
+    deleteBtn.addEventListener("click", () => {
+      localStorage.removeItem("favoriteQuote");
+      localStorage.removeItem("favoriteAuthor");
+      document.getElementById("favoriteQuote").innerText =
+        "Citation favorite : Aucune pour le moment";
+      deleteBtn.remove();
+    });
   }
 }
 
