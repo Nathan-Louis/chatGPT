@@ -51,6 +51,31 @@
     <button id="saveQuoteButton">Sauvegarder cette citation</button>
     <p id="favoriteQuote">Citation favorite : Aucune pour le moment</p>
 
+    <section id="currency-converter">
+      <h2>Convertisseur de devises</h2>
+      <label for="amount">Montant :</label>
+      <input type="number" id="amount" placeholder="Entrez un montant" />
+
+      <label for="fromCurrency">De :</label>
+      <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+
+      <label for="toCurrency">Vers :</label>
+      <select id="toCurrency">
+        <option value="EUR">EUR</option>
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+      </select>
+
+      <button id="convertButton">Convertir</button>
+      <p id="result">Résultat : -</p>
+    </section>
+
+    <button id="scrollTopBtn">Haut de page</button>
+
     <script src="./Js/index.js"></script>
   </body>
 </html>

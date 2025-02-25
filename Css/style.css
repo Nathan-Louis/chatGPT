@@ -118,6 +118,23 @@ button:hover + #quoteText {
   padding: 10px;
 }
 
+#scrollTopBtn {
+  /* display: none; */
+  position: sticky;
+  left: 87%;
+  bottom: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 @media (max-width: 600px) {
   section {
     width: 95%;

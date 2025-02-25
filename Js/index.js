@@ -124,3 +124,23 @@ document.addEventListener("DOMContentLoaded", () => {
   displayFavoriteQuote();
   deleteFavoriteQuote();
 });
+
+let scrollTop = document.getElementById("scrollTopBtn");
+
+document.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    // scrollTop.style.display = "block";
+    scrollTop.classList.add("show");
+  } else {
+    // scrollTop.style.display = "none";
+
+    scrollTop.classList.remove("show");
+  }
+});
+
+scrollTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
