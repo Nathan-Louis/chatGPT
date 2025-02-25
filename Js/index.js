@@ -144,3 +144,44 @@ scrollTop.addEventListener("click", () => {
     behavior: "smooth",
   });
 });
+
+document.getElementById("convertButton").addEventListener("click", async () => {
+  let amount = parseFloat(document.getElementById("amount").value);
+  let fromCurrency = document.getElementById("fromCurrency").value;
+  let toCurrency = document.getElementById("toCurrency").value;
+
+  if (isNaN(amount) || amount <= 0) {
+    document.getElementById("result").innerText = "Entrez un montant valide.";
+    return;
+  }
+
+  if (fromCurrency === toCurrency) {
+    document.getElementById(
+      "result"
+    ).innerText = `Résultat : ${amount} ${toCurrency}`;
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`
+    );
+    if (!response.ok) throw new Error("Erreur API");
+
+    const data = await response.json();
+    let rate = data.rates[toCurrency];
+
+    if (!rate) {
+      document.getElementById("result").innerText = "Conversion impossible.";
+      return;
+    }
+
+    let convertedAmount = amount * rate;
+    document.getElementById(
+      "result"
+    ).innerText = `Résultat : ${convertedAmount.toFixed(2)} ${toCurrency}`;
+  } catch (error) {
+    document.getElementById("result").innerText = "Erreur de conversion.";
+    console.error(error);
+  }
+});
