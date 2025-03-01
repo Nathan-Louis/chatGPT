@@ -1,3 +1,5 @@
+// COULEUR ALEATOIRE
+
 function changeColor() {
   // Générer une couleur aléatoire HEXA
   const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -14,7 +16,10 @@ function changeColor() {
   }
 
   // Mettre à jour le texte avec la nouvelle couleur
-  colorText.innerText = `Couleur actuelle : ${randomColor}`;
+  // colorText.innerText = `Couleur actuelle : ${randomColor}`;
+  document.querySelector(
+    "header"
+  ).innerText = `Couleur actuelle : ${randomColor}`;
 }
 
 // Sélectionner le bouton avec l'ID (meilleure pratique)
@@ -25,29 +30,11 @@ btnColor.addEventListener("click", changeColor);
 
 // CITATIONS
 
-// const quotes = [
-//   "La seule façon de faire du bon travail est d’aimer ce que vous faites. – Steve Jobs",
-//   "Le succès, c'est tomber sept fois et se relever huit. – Proverbe japonais",
-//   "L'échec est simplement l'opportunité de recommencer, cette fois plus intelligemment. – Henry Ford",
-//   "N’abandonnez jamais un rêve juste à cause du temps qu’il faudra pour l’accomplir. Le temps passera de toute façon. – Earl Nightingale",
-//   "Tout semble impossible jusqu’à ce qu’on le fasse. – Nelson Mandela",
-// ];
-
-// function changeQuote() {
-//   const randomIndex = Math.floor(Math.random() * quotes.length);
-//   const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-
-//   document.getElementById("quoteText").innerText = quotes[randomIndex];
-//   document.getElementById("quoteText").style.color = randomColor;
-// }
-
-// let quoteBtn = document.getElementById("QuoteBtn");
-
 async function fetchQuote() {
   try {
     const response = await fetch("https://api.quotable.io/random");
     if (!response.ok) {
-      throw new Error("Problème avec l'API");
+      throw new Error(`Erreur API: ${response.status}`);
     }
     const data = await response.json();
     document.getElementById("quoteText").innerText = `"${data.content}"`;
@@ -125,6 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
   deleteFavoriteQuote();
 });
 
+// BOUTON SCROLL UP
+
 let scrollTop = document.getElementById("scrollTopBtn");
 
 document.addEventListener("scroll", () => {
@@ -145,6 +134,8 @@ scrollTop.addEventListener("click", () => {
   });
 });
 
+// CONVERSION
+
 document.getElementById("convertButton").addEventListener("click", async () => {
   let amount = parseFloat(document.getElementById("amount").value);
   let fromCurrency = document.getElementById("fromCurrency").value;
@@ -156,9 +147,13 @@ document.getElementById("convertButton").addEventListener("click", async () => {
   }
 
   if (fromCurrency === toCurrency) {
+    let rate = 1;
     document.getElementById(
       "result"
     ).innerText = `Résultat : ${amount} ${toCurrency}`;
+    document.getElementById(
+      "change"
+    ).innerText = `Taux de change : ${rate.toFixed(2)} ${toCurrency}`;
     return;
   }
 
@@ -173,6 +168,7 @@ document.getElementById("convertButton").addEventListener("click", async () => {
 
     if (!rate) {
       document.getElementById("result").innerText = "Conversion impossible.";
+      document.getElementById("change").innerText = "Taux de change : ...";
       return;
     }
 
@@ -180,6 +176,9 @@ document.getElementById("convertButton").addEventListener("click", async () => {
     document.getElementById(
       "result"
     ).innerText = `Résultat : ${convertedAmount.toFixed(2)} ${toCurrency}`;
+    document.getElementById(
+      "change"
+    ).innerText = `Taux de change : ${rate.toFixed(2)} ${toCurrency}`;
   } catch (error) {
     document.getElementById("result").innerText = "Erreur de conversion.";
     console.error(error);
