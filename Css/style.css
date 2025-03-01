@@ -1,147 +1,151 @@
-::before,
-::after,
+/* Général */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  text-align: center;
+  font-family: Arial, sans-serif;
   margin: 0;
-  /* padding: 20px; */
-  transition: background-color 0.5s ease-in-out;
+  padding: 0;
+  background: linear-gradient(120deg, #f6d365, #fda085);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
 }
 
+/* En-tête */
 header {
-  background-color: #007bff;
+  background-color: #333;
   color: white;
   padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
+/* Sections */
 section {
-  margin: 20px auto;
-  width: 80%;
-  max-width: 800px;
-  padding: 20px;
   background-color: white;
+  padding: 20px;
+  margin: 15px 0;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
-#about p {
-  padding: 20px;
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-#projects ul {
-  list-style: none;
-}
-
-#projects ul li {
-  padding: 20px;
-}
-
-#contact p {
-  padding: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #007bffcc;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 25px;
-}
-
-button:hover {
-  background-color: #007bff;
-  font-size: 1.1rem;
-}
-
-h2 {
-  color: #007bff;
-}
-
+/* Liens */
 a {
   color: #007bff;
   text-decoration: none;
+  font-weight: bold;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-#colorText {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-#quoteText {
-  font-style: italic;
-  font-size: 1.5rem;
-  text-align: center;
-  margin: 20px auto;
-  padding: 10px;
-  border-radius: 5px;
-  max-width: 80%;
-  transition: color 0.5s ease, transform 0.3s ease, opacity 0.3s ease;
-  width: 60%;
-}
-
-#quoteAuthor {
-  font-size: 1.2em;
-  color: #555;
-}
-
-#quoteButton {
-  padding: 10px 20px;
-  font-size: 1em;
+/* Boutons */
+button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  display: block;
+  margin: 15px auto;
 }
 
-button:hover + #quoteText {
-  opacity: 0.7;
+button:hover {
+  background-color: #ff4500;
   transform: scale(1.05);
 }
 
-#favoriteQuote {
-  padding: 10px;
-}
-
+/* Bouton haut de page */
 #scrollTopBtn {
-  /* display: none; */
-  position: sticky;
-  left: 87%;
+  position: fixed;
   bottom: 20px;
+  right: 20px;
+  width: 40px;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
   opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
 #scrollTopBtn.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  transform: translateY(0);
 }
 
-@media (max-width: 600px) {
-  section {
-    width: 95%;
-    padding: 15px;
-  }
+#scrollTopBtn:hover {
+  background-color: #0056b3;
+}
 
-  header {
-    font-size: 20px;
+/* Convertisseur de devises */
+#currency-converter {
+  text-align: center;
+}
+
+input,
+select {
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Citation favorite et citation du jour */
+#favoriteQuote {
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+#quoteText {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Animation de fond (en option si tu veux l'effet stylé) */
+@keyframes movingBackground {
+  0% {
+    background-position: 0 0;
   }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+body.animated-bg {
+  background-size: 400% 400%;
+  animation: movingBackground 15s infinite alternate ease-in-out;
 }

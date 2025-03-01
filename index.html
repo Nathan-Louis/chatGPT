@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <h1>Bienvenue sur mon site !</h1>
+      <h1>Bienvenue sur mon site ! <span id="colorInfo"></span></h1>
     </header>
 
     <section id="about">
@@ -32,18 +32,17 @@
       <h2>Contact</h2>
       <p>
         Tu peux me retrouver sur
-        <a href="https://github.com/Nathan-Louis" target="_blank">mon GitHub</a>
+        <a
+          href="https://github.com/Nathan-Louis"
+          target="_blank"
+          rel="noopener noreferrer"
+          >mon GitHub</a
+        >
         !
       </p>
     </section>
 
     <button id="changeColorBtn">Changer la couleur</button>
-
-    <!-- <section id="quote-section">
-      <h2>Citation du jour</h2>
-      <p id="quoteText">Clique sur le bouton pour une nouvelle citation.</p>
-      <button id="newQuoteBtn">Nouvelle citation</button>
-    </section> -->
 
     <button id="quoteButton">Nouvelle citation</button>
     <p id="quoteText">Cliquez sur le bouton pour obtenir une citation...</p>
@@ -75,7 +74,7 @@
       <p id="change"></p>
     </section>
 
-    <button id="scrollTopBtn">Haut de page</button>
+    <button id="scrollTopBtn" class="scrollTop">↑</button>
 
     <script src="./Js/index.js" defer></script>
   </body>
