@@ -1,151 +1,136 @@
-/* Général */
+/* RESET */
 * {
   box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg, #f6d365, #fda085);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  overflow-x: hidden;
-  transition: background-color 0.5s ease;
 }
 
-/* En-tête */
+/* GENERAL */
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #212529;
+  padding: 20px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
 header {
-  background-color: #333;
+  background-color: #2c3e50;
   color: white;
   padding: 20px;
   text-align: center;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-/* Sections */
-section {
-  background-color: white;
-  padding: 20px;
-  margin: 15px 0;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 800px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease forwards;
+  margin-bottom: 20px;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* SECTIONS */
+section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-around; */
 }
 
-/* Liens */
-a {
-  color: #007bff;
-  text-decoration: none;
+/* TITRES */
+h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
   font-weight: bold;
 }
 
+/* LIENS */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
 a:hover {
   text-decoration: underline;
 }
 
-/* Boutons */
+/* BOUTONS */
 button {
-  background-color: #ff6347;
+  background-color: #2c3e50;
   color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 10px 25px;
   cursor: pointer;
   border-radius: 5px;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  display: block;
-  margin: 15px auto;
+  transition: background-color 0.3s ease;
+  max-width: 55%;
 }
-
 button:hover {
-  background-color: #ff4500;
-  transform: scale(1.05);
+  background-color: #1a252f;
 }
 
-/* Bouton haut de page */
+#changeColorBtn {
+  align-self: center;
+}
+
+/* INPUTS & SELECTS */
+input,
+select {
+  padding: 8px;
+  margin: 5px 0;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+}
+
+/* SCROLL TOP BUTTON */
 #scrollTopBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 40px;
+  display: none;
   background-color: #007bff;
   color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 50%;
-  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease;
 }
-
 #scrollTopBtn.show {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transform: translateY(0);
+  display: block;
 }
-
 #scrollTopBtn:hover {
   background-color: #0056b3;
 }
 
-/* Convertisseur de devises */
+/* CITATION */
+#quote-section {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+/* CONVERTISSEUR */
 #currency-converter {
-  text-align: center;
+  background-color: #e9ecef;
 }
 
-input,
-select {
-  padding: 8px;
-  margin: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Citation favorite et citation du jour */
-#favoriteQuote {
-  font-weight: bold;
-  font-style: italic;
-  margin-top: 10px;
-}
-
-#quoteText {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-/* Animation de fond (en option si tu veux l'effet stylé) */
-@keyframes movingBackground {
-  0% {
-    background-position: 0 0;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
   }
-  100% {
-    background-position: 100% 100%;
-  }
-}
 
-body.animated-bg {
-  background-size: 400% 400%;
-  animation: movingBackground 15s infinite alternate ease-in-out;
+  header {
+    font-size: 18px;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  button {
+    width: 100%;
+  }
 }

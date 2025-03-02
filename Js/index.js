@@ -1,122 +1,94 @@
-function changeColor() {
-  const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  document.body.style.backgroundColor = randomColor;
-
+// CHANGER COULEUR DE FOND
+document.getElementById("changeColorBtn").addEventListener("click", () => {
+  const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  document.body.style.backgroundColor = color;
   document.getElementById(
-    "colorInfo"
-  ).innerText = ` - Couleur actuelle : ${randomColor}`;
-}
+    "colorText"
+  ).innerText = `Couleur actuelle : ${color}`;
+});
 
-document
-  .getElementById("changeColorBtn")
-  .addEventListener("click", changeColor);
-
+// CITATION
 async function fetchQuote() {
   try {
     const response = await fetch("https://api.quotable.io/random");
-    if (!response.ok) throw new Error("Problème avec l'API");
     const data = await response.json();
     document.getElementById("quoteText").innerText = `"${data.content}"`;
     document.getElementById("quoteAuthor").innerText = `- ${data.author}`;
-  } catch {
+  } catch (error) {
     document.getElementById("quoteText").innerText =
-      "⚠️ Impossible de charger une citation.";
+      "Impossible de charger une citation.";
     document.getElementById("quoteAuthor").innerText = "";
   }
 }
-
 document.getElementById("quoteButton").addEventListener("click", fetchQuote);
 
+// SAUVEGARDE CITATION
 function saveFavoriteQuote() {
-  const quote = document.getElementById("quoteText").innerText;
-  const author = document.getElementById("quoteAuthor").innerText;
-
-  if (quote && author) {
-    localStorage.setItem("favoriteQuote", quote);
-    localStorage.setItem("favoriteAuthor", author);
-    displayFavoriteQuote();
-  }
+  localStorage.setItem(
+    "favoriteQuote",
+    document.getElementById("quoteText").innerText
+  );
+  localStorage.setItem(
+    "favoriteAuthor",
+    document.getElementById("quoteAuthor").innerText
+  );
+  displayFavoriteQuote();
 }
-
 function displayFavoriteQuote() {
-  const savedQuote = localStorage.getItem("favoriteQuote");
-  const savedAuthor = localStorage.getItem("favoriteAuthor");
-
-  if (savedQuote && savedAuthor) {
-    document.getElementById(
-      "favoriteQuote"
-    ).innerText = `Citation favorite : ${savedQuote} ${savedAuthor}`;
-    showDeleteButton();
-  }
+  const quote = localStorage.getItem("favoriteQuote") || "Aucune";
+  const author = localStorage.getItem("favoriteAuthor") || "";
+  document.getElementById(
+    "favoriteQuote"
+  ).innerText = `Citation favorite : ${quote} ${author}`;
 }
-
-function showDeleteButton() {
-  if (!document.getElementById("deleteQuote")) {
-    const btn = document.createElement("button");
-    btn.id = "deleteQuote";
-    btn.innerText = "Supprimer la citation favorite";
-    btn.addEventListener("click", () => {
-      localStorage.removeItem("favoriteQuote");
-      localStorage.removeItem("favoriteAuthor");
-      document.getElementById("favoriteQuote").innerText =
-        "Citation favorite : Aucune pour le moment";
-      btn.remove();
-    });
-    document.body.appendChild(btn);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", displayFavoriteQuote);
 document
   .getElementById("saveQuoteButton")
   .addEventListener("click", saveFavoriteQuote);
+document.addEventListener("DOMContentLoaded", displayFavoriteQuote);
 
-document.addEventListener("scroll", () => {
-  const btn = document.getElementById("scrollTopBtn");
-  if (window.scrollY > 100) btn.classList.add("show");
-  else btn.classList.remove("show");
+// SCROLL TOP
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    scrollTopBtn.classList.add("show");
+  } else {
+    scrollTopBtn.classList.remove("show");
+  }
 });
-
-document.getElementById("scrollTopBtn").addEventListener("click", () => {
+scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// CONVERTISSEUR DE DEVISES
 document.getElementById("convertButton").addEventListener("click", async () => {
-  let amount = parseFloat(document.getElementById("amount").value);
-  let fromCurrency = document.getElementById("fromCurrency").value;
-  let toCurrency = document.getElementById("toCurrency").value;
+  const amount = parseFloat(document.getElementById("amount").value);
+  const from = document.getElementById("fromCurrency").value;
+  const to = document.getElementById("toCurrency").value;
 
   if (isNaN(amount) || amount <= 0) {
     document.getElementById("result").innerText = "Entrez un montant valide.";
     return;
   }
 
-  if (fromCurrency === toCurrency) {
-    document.getElementById(
-      "result"
-    ).innerText = `Résultat : ${amount} ${toCurrency}`;
-    document.getElementById("change").innerText = "Taux de change : 1";
+  if (from === to) {
+    document.getElementById("result").innerText = `Résultat : ${amount} ${to}`;
+    document.getElementById("change").innerText = `Taux de change : 1`;
     return;
   }
 
   try {
-    const response = await fetch(
-      `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`
+    const res = await fetch(
+      `https://api.exchangerate-api.com/v4/latest/${from}`
     );
-    if (!response.ok) throw new Error();
-
-    const data = await response.json();
-    const rate = data.rates[toCurrency];
-    const converted = amount * rate;
-
-    document.getElementById(
-      "result"
-    ).innerText = `Résultat : ${converted.toFixed(2)} ${toCurrency}`;
+    const data = await res.json();
+    const rate = data.rates[to];
+    document.getElementById("result").innerText = `Résultat : ${(
+      amount * rate
+    ).toFixed(2)} ${to}`;
     document.getElementById(
       "change"
     ).innerText = `Taux de change : ${rate.toFixed(2)}`;
   } catch {
-    document.getElementById("result").innerText =
-      "⚠️ Erreur de conversion. Vérifiez votre connexion.";
+    document.getElementById("result").innerText = "Erreur de conversion.";
   }
 });
