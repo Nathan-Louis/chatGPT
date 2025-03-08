@@ -2,122 +2,95 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Portfolio - Nathan Louis - Développeur Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Découvrez le portfolio de Nathan Louis, développeur web en formation. Suivez mes projets et ma progression en HTML, CSS et JavaScript."
+      content="Un site interactif avec générateur de citations, convertisseur de devises et formulaire d'inscription sécurisé."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Liens vers les styles et polices -->
+    <meta property="og:title" content="Site Web Interactif" />
+    <meta
+      property="og:description"
+      content="Découvrez notre site interactif avec citations, conversion de devises et plus encore !"
+    />
+    <meta property="og:type" content="website" />
+    <title>Site Web Optimisé</title>
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <script defer src="./js/index.js"></script>
   </head>
   <body>
     <header>
-      <h1>Bienvenue sur mon Portfolio</h1>
-      <nav>
-        <ul>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#projects">Projets</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <h1>Bienvenue sur notre site interactif</h1>
     </header>
-
     <main>
-      <!-- Section À propos -->
-      <section id="about">
-        <h2>À propos de moi</h2>
-        <p>
-          Je suis un développeur web en formation, passionné par HTML, CSS et
-          JavaScript.
-        </p>
+      <!-- Bouton pour changer la couleur de fond -->
+      <section>
+        <button id="changeColorBtn">Changer la couleur</button>
+        <p id="colorText">Couleur actuelle : #ffffff</p>
       </section>
 
-      <!-- Section Projets -->
-      <section id="projects">
-        <h2>Mes projets</h2>
-        <ul>
-          <li>Site vitrine</li>
-          <li>Générateur de couleurs</li>
-          <li>Projet en React</li>
-        </ul>
-      </section>
-
-      <!-- Section Contact -->
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>
-          Retrouvez-moi sur
-          <a href="https://github.com/Nathan-Louis" target="_blank">GitHub</a>.
-        </p>
-      </section>
-
-      <!-- Section Citation du jour -->
-      <section id="quote-section">
-        <h2>Citation du jour</h2>
-        <p id="quoteText">Cliquez pour obtenir une citation...</p>
+      <!-- Générateur de citations -->
+      <section>
+        <button id="quoteButton">Obtenir une citation</button>
+        <p id="quoteText">Cliquez pour une citation</p>
         <p id="quoteAuthor"></p>
-        <button id="quoteButton">Nouvelle citation</button>
-        <button id="saveQuoteButton">Sauvegarder</button>
+        <button id="saveQuoteButton">Sauvegarder cette citation</button>
         <p id="favoriteQuote">Citation favorite : Aucune</p>
       </section>
 
-      <!-- Section Formulaire d'inscription -->
-      <section id="login">
-        <h2>Inscription</h2>
+      <!-- Bouton Scroll To Top -->
+      <button id="scrollTopBtn" aria-label="Remonter en haut">↑</button>
+
+      <!-- Convertisseur de devises -->
+      <section>
+        <input
+          type="number"
+          id="amount"
+          placeholder="Montant"
+          aria-label="Montant à convertir"
+        />
+        <select id="fromCurrency" aria-label="Devise de départ">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+        </select>
+        <select id="toCurrency" aria-label="Devise de destination">
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+        </select>
+        <button id="convertButton">Convertir</button>
+        <p id="result">Résultat :</p>
+        <p id="change">Taux de change :</p>
+      </section>
+
+      <!-- Formulaire d'inscription sécurisé -->
+      <section>
         <form id="signupForm">
-          <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" placeholder="Nom" required />
-          </div>
-
-          <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" placeholder="Prénom" required />
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" placeholder="Email" required />
-          </div>
-
-          <div class="form-group">
-            <label for="password">Mot de passe :</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Mot de passe"
-              required
-              minlength="8"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="passwordValidation">Confirmation :</label>
-            <input
-              type="password"
-              id="passwordValidation"
-              placeholder="Confirmer le mot de passe"
-              required
-            />
-          </div>
-
+          <input type="text" id="nom" placeholder="Nom" required />
+          <input type="text" id="prenom" placeholder="Prénom" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Mot de passe"
+            required
+            minlength="8"
+          />
+          <input
+            type="password"
+            id="passwordValidation"
+            placeholder="Confirmer le mot de passe"
+            required
+          />
+          <label
+            ><input type="checkbox" id="cgu" required /> J'accepte les
+            CGU</label
+          >
           <button type="submit">S'inscrire</button>
+          <p id="formMessage"></p>
         </form>
       </section>
     </main>
-
     <footer>
-      <button id="scrollTopBtn">Haut de page</button>
+      <p>&copy; 2025 - Tous droits réservés</p>
     </footer>
-
-    <script src="./js/index.js" defer></script>
   </body>
 </html>
